@@ -1,18 +1,16 @@
-#!/bin/bash
-
-echo "BUILD START"
+# build_files.sh
+# Exit on error
+set -o errexit
 
 # Install dependencies
-python3.9 -m pip install -r requirements.txt
-
-# Run migrations
-python3.9 manage.py migrate --noinput
+pip install -r requirements.txt
 
 # Collect static files
-python3.9 manage.py collectstatic --noinput --clear
+python manage.py collectstatic --noinput
 
-# Move static files to expected output directory
+# Create the directory referenced in vercel.json
 mkdir -p staticfiles_build
-cp -r static/* staticfiles_build/
+cp -r staticfiles/* staticfiles_build/
 
-echo "BUILD END"
+# Make the script executable
+chmod +x build_files.sh

@@ -26,11 +26,47 @@ SECRET_KEY = 'django-insecure-=_8cqt)c@)&pr*0nmi*=(o_=)^ph451lx*sp(lt-_8(0s%$^i9
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+
+# Update this line in your settings.py file
 CSRF_TRUSTED_ORIGINS = [
-    "the-reader-ebook.vercel.app",  # Use your actual domain
+    'https://the-reader-ebook.vercel.app',
+    'http://the-reader-ebook.vercel.app',  # Include http if needed
+    # Add localhost for development
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
 ]
 
-ALLOWED_HOSTS = ['.vercel.app', 'now.sh','the-reader-ebook.vercel.app']
+
+# For Cross-Origin Resource Sharing (CORS)
+CORS_ALLOW_ALL_ORIGINS = False  # Set to True only for development
+CORS_ALLOWED_ORIGINS = [
+    'https://the-reader-ebook.vercel.app',
+    # Add any frontend domains that will access your API
+]
+
+# For APIs that need to be accessed by external clients
+CSRF_COOKIE_SECURE = True  # Use only with HTTPS
+CSRF_COOKIE_HTTPONLY = True  # Prevents JavaScript from accessing the cookie
+CSRF_USE_SESSIONS = True  # Store CSRF token in session instead of cookie
+
+# File Storage Settings
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# AWS Settings (if using S3)
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME', 'us-east-1')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_DEFAULT_ACL = 'public-read'
+AWS_LOCATION = 'media'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+
+
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
