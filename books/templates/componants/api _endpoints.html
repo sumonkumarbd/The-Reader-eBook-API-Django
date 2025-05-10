@@ -26,7 +26,7 @@
                     <p class="endpoint-description">Fetches a list of all books in the system with their associated metadata.</p>
                     
                     <div class="endpoint-url">
-                        https://the-reader-ebook.onrender.com/api/books/
+                        https://the-reader-ebook.vercel.app/api/books/
                         <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                     </div>
                     
@@ -92,7 +92,7 @@ val books = readerApiService.getAllBooks()</div>
                     <p class="endpoint-description">Retrieves detailed metadata for a specific book by its ID.</p>
                     
                     <div class="endpoint-url">
-                        https://the-reader-ebook.onrender.com/api/books/{pk}/
+                        https://the-reader-ebook.vercel.app/api/books/{pk}/
                         <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                     </div>
                     
@@ -178,7 +178,7 @@ val bookDetails = readerApiService.getBookDetails(1)</div>
                     <p class="endpoint-description">Upload a new book along with metadata such as title, author, category, language, and cover image.</p>
                     
                     <div class="endpoint-url">
-                        https://the-reader-ebook.onrender.com/api/books/
+                        https://the-reader-ebook.vercel.app/api/books/
                         <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                     </div>
                     
@@ -321,7 +321,7 @@ val response = readerApiService.createBook(
                     <p class="endpoint-description">Updates metadata for an existing book without requiring a new file upload.</p>
                     
                     <div class="endpoint-url">
-                        https://the-reader-ebook.onrender.com/api/books/{pk}/
+                        https://the-reader-ebook.vercel.app/api/books/{pk}/
                         <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                     </div>
                     
@@ -443,7 +443,7 @@ val response = readerApiService.updateBook(
                     <p class="endpoint-description">Removes a book and all associated metadata from the system.</p>
                     
                     <div class="endpoint-url">
-                        https://the-reader-ebook.onrender.com/api/books/{pk}/
+                        https://the-reader-ebook.vercel.app/api/books/{pk}/
                         <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                     </div>
                     
@@ -492,7 +492,7 @@ val response = readerApiService.deleteBook(1)</div>
                     <p class="endpoint-description">Download the PDF file for a specific book.</p>
                     
                     <div class="endpoint-url">
-                        https://the-reader-ebook.onrender.com/api/download/pdf/{pk}/
+                        https://the-reader-ebook.vercel.app/api/download/pdf/{pk}/
                         <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                     </div>
                     
@@ -563,7 +563,7 @@ suspend fun downloadBookPdf(bookId: Int) {
                     <p class="endpoint-description">Download the cover image for a specific book.</p>
                     
                     <div class="endpoint-url">
-                        https://the-reader-ebook.onrender.com/api/download/cover/{pk}/
+                        https://the-reader-ebook.vercel.app/api/download/cover/{pk}/
                         <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                     </div>
                     
@@ -607,7 +607,7 @@ interface ReaderApiService {
 // Example usage with Glide library
 fun loadBookCover(bookId: Int, imageView: ImageView) {
     Glide.with(context)
-        .load("https://the-reader-ebook.onrender.com/api/download/cover/${bookId}/")
+        .load("https://the-reader-ebook.vercel.app/api/download/cover/${bookId}/")
         .placeholder(R.drawable.placeholder_cover)
         .error(R.drawable.error_cover)
         .into(imageView)
