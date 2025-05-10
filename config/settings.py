@@ -30,7 +30,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://the-reader-ebook.onrender.com",  # Use your actual Render domain
 ]
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','the-reader-ebook.onrender.com']
+ALLOWED_HOSTS = ['.vercel.app', 'now.sh',]
 
 # Application definition
 
