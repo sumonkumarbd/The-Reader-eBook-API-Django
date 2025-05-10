@@ -1,16 +1,22 @@
-# build_files.sh
+#!/bin/bash
 # Exit on error
 set -o errexit
 
-# Install dependencies
-pip install -r requirements.txt
+# Use the Python executable that Vercel provides
+echo "Python version:"
+python3 --version
+
+# Install dependencies using the full path to pip
+echo "Installing dependencies..."
+python3 -m pip install -r requirements.txt
 
 # Collect static files
-python manage.py collectstatic --noinput
+echo "Collecting static files..."
+python3 manage.py collectstatic --noinput
 
 # Create the directory referenced in vercel.json
+echo "Creating staticfiles_build directory..."
 mkdir -p staticfiles_build
 cp -r staticfiles/* staticfiles_build/
 
-# Make the script executable
-chmod +x build_files.sh
+echo "Build completed successfully!"
