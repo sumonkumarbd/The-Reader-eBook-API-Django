@@ -171,10 +171,10 @@ JAZZMIN_SETTINGS ={
     "site_logo": "admin-interface/favicon/logo.png",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    # "login_logo": "admin-interface/favicon/logo.png",
+    "login_logo": "admin-interface/favicon/logo_with_bg.png",
 
     # Logo to use for login form in dark themes (defaults to login_logo)
-    # "login_logo_dark": "admin-interface/favicon/logo.png",
+    "login_logo_dark": "admin-interface/favicon/logo_with_bg.png",
 
     # CSS classes that are applied to the logo above
     "site_logo_classes": "img-circle",
@@ -265,7 +265,7 @@ JAZZMIN_SETTINGS ={
     # UI Tweaks #
     #############
     # Relative paths to custom CSS/JS scripts (must be present in static files)
-    "custom_css": None,
+    "custom_css": "css/cs_admin.css",
     "custom_js": None,
     # Whether to link font from fonts.googleapis.com (use custom_css to supply font otherwise)
     "use_google_fonts_cdn": False,
