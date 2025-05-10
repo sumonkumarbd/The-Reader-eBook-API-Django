@@ -27,10 +27,10 @@ SECRET_KEY = 'django-insecure-=_8cqt)c@)&pr*0nmi*=(o_=)^ph451lx*sp(lt-_8(0s%$^i9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 CSRF_TRUSTED_ORIGINS = [
-    "https://the-reader-ebook.onrender.com",  # Use your actual Render domain
+    "the-reader-ebook.vercel.app",  # Use your actual domain
 ]
 
-ALLOWED_HOSTS = ['.vercel.app', 'now.sh',]
+ALLOWED_HOSTS = ['.vercel.app', 'now.sh','the-reader-ebook.vercel.app']
 
 # Application definition
 
