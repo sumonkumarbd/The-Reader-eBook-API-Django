@@ -1,4 +1,4 @@
-#!/home/sumonkmr/development/python/DjangoRESTAPIs/The_Reader_BackEnd/.venv/bin/python3
+#!/home/sumonkmr/development/python/DjangoRESTAPIs/The-Reader-Backend/.venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
