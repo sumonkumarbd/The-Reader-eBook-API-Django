@@ -3,10 +3,13 @@
 echo "BUILD START"
 
 # Install dependencies
-python3.11.2 -m pip install -r requirements.txt
+python3.9 -m pip install -r requirements.txt
+
+# Run migrations
+python3.9 manage.py migrate --noinput
 
 # Collect static files
-python3.11.2 manage.py collectstatic --noinput --clear
+python3.9 manage.py collectstatic --noinput --clear
 
 # Move static files to expected output directory
 mkdir -p staticfiles_build
