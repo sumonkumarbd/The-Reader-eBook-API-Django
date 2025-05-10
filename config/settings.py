@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import dj_database_url
 from dotenv import load_dotenv
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=_8cqt)c@)&pr*0nmi*=(o_=)^ph451lx*sp(lt-_8(0s%$^i9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Update this line in your settings.py file
 CSRF_TRUSTED_ORIGINS = [
@@ -49,22 +50,6 @@ CSRF_COOKIE_SECURE = True  # Use only with HTTPS
 CSRF_COOKIE_HTTPONLY = True  # Prevents JavaScript from accessing the cookie
 CSRF_USE_SESSIONS = True  # Store CSRF token in session instead of cookie
 
-# File Storage Settings
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-# AWS Settings (if using S3)
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME', 'us-east-1')
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_DEFAULT_ACL = 'public-read'
-AWS_LOCATION = 'media'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-
 
 ALLOWED_HOSTS = ['*']
 
@@ -79,6 +64,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'storages',
     'books',
     
 ]
@@ -139,6 +125,13 @@ DATABASES = {
     )
 }
 
+# Custom storage backend for Supabase
+DEFAULT_FILE_STORAGE = 'storage.supabase_storage.SupabaseStorage'
+SUPABASE_URL = config("SUPABASE_URL")
+SUPABASE_API_KEY = config("SUPABASE_API_KEY")
+SUPABASE_BUCKET = config("SUPERBASE_BUCKET_NAME")
+SUPABASE_REGION = config("SUPABASE_REGION", default="us-east-1")
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -187,8 +180,10 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR/ 'media')
+
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

@@ -3,7 +3,10 @@ from django.db.models import Q
 from .models import *
 
 
+
+
 class BookAdmin(admin.ModelAdmin):
+    exclude = ('user',)
     list_display = ('title', 'author', 'category', 'upload_date', 'featured')
     list_filter = ('author', 'category', 'upload_date', 'featured')
     prepopulated_fields = {'slug':('title','author')}
