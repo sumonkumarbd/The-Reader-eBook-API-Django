@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-import io
+from django.conf import settings
 
 # Create your models here.
 # Define Language model
@@ -30,6 +30,7 @@ def imagevalidator(value):
 
 # Define Book model
 class Book(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)  # Now Author is defined
     slug = models.SlugField(max_length=100)
