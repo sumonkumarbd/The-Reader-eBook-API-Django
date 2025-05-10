@@ -1,3 +1,7 @@
+# Add setuptools to fix the pkg_resources error
+setuptools==69.2.0
+
+# Existing dependencies
 asgiref==3.8.1
 class-registry==2.1.2
 dj-database-url==2.3.0
