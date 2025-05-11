@@ -12,8 +12,8 @@ class-registry==2.1.2
 deprecation==2.1.0
 dj-database-url==2.3.0
 Django==5.2.1
+django-admin-interface==0.30.0
 django-colorfield==0.14.0
-django-jazzmin==3.0.1
 django-storages==1.14.2
 djangorestframework==3.16.0
 frozenlist==1.6.0
