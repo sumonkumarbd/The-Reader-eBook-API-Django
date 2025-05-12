@@ -1,60 +1,64 @@
 <!-- API Endpoints Section -->
-    <section class="endpoints" id="endpoints">
-        <div class="container">
-            <div class="section-title">
-                <h2>The Reader E-book API Reference</h2>
-                <p>Comprehensive documentation of all available endpoints</p>
-            </div>
-            
-            <div class="endpoint-tabs">
-                <div class="endpoint-tab active" onclick="showEndpoint(0)">Get All Books</div>
-                <div class="endpoint-tab" onclick="showEndpoint(1)">Book Details</div>
-                <div class="endpoint-tab" onclick="showEndpoint(2)">Create Book</div>
-                <div class="endpoint-tab" onclick="showEndpoint(3)">Update Book</div>
-                <div class="endpoint-tab" onclick="showEndpoint(4)">Delete Book</div>
-                <div class="endpoint-tab" onclick="showEndpoint(5)">Download PDF</div>
-                <div class="endpoint-tab" onclick="showEndpoint(6)">Download Cover</div>
-            </div>
-            
-            <div class="endpoint-content">
-                <!-- Get All Books -->
-                <div class="endpoint-item active">
-                    <div class="endpoint-header">
-                        <span class="method get">GET</span>
-                        <h3 class="endpoint-title">Get All Books</h3>
-                    </div>
-                    <p class="endpoint-description">Fetches a list of all books in the system with their associated metadata.</p>
-                    
-                    <div class="endpoint-url">
-                        https://the-reader-ebook.vercel.app/api/books/
-                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
-                    </div>
-                    
-                    <div class="response-section">
-                        <h4>Response Format</h4>
-                        <div class="code-block">
+<section class="endpoints" id="endpoints">
+    <div class="container">
+        <div class="section-title">
+            <h2>The Reader E-book API Reference</h2>
+            <p>Comprehensive documentation of all available endpoints</p>
+        </div>
+        
+        <div class="endpoint-tabs">
+            <div class="endpoint-tab active" onclick="showEndpoint(0)">Get All Books</div>
+            <div class="endpoint-tab" onclick="showEndpoint(1)">Book Details</div>
+            <div class="endpoint-tab" onclick="showEndpoint(2)">Create Book</div>
+            <div class="endpoint-tab" onclick="showEndpoint(3)">Update Book</div>
+            <div class="endpoint-tab" onclick="showEndpoint(4)">Delete Book</div>
+        </div>
+        
+        <div class="endpoint-content">
+            <!-- Get All Books -->
+            <div class="endpoint-item active">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <h3 class="endpoint-title">Get All Books</h3>
+                </div>
+                <p class="endpoint-description">Fetches a list of all books in the system with their associated metadata.</p>
+                
+                <div class="endpoint-url">
+                    https://the-reader-ebook.vercel.app/api/books/
+                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                </div>
+                
+                <div class="response-section">
+                    <h4>Response Format</h4>
+                    <div class="code-block">
 [
     {
-        "id": 1,
-        "author": "Johnny Firic",
-        "category": "Friction",
-        "language": "English",
-        "publisher": "Independently published",
-        "title": "The Oldest Word",
-        "slug": "the-oldest-word-johnny-firic",
-        "publication_date": "2022-10-01",
-        "description": ""Plural identity is where respectful practice begins." Who are you? Just the one body and mind? Does your story begin with your birth? Or how far back would you go?\r\n\r\nThe Oldest Word spans ten thousand years and more than a dozen settings. Human contradictions are reconciled time and again, with tragedy and humor feeding off each other. From the twin mirror mazes of history and psychology, amid ever-shifting social and natural landscapes, enduring patterns emerge.\r\n\r\nThe story opens with the discovery of a mysterious box from the distant past. Its makers are five orphaned friends who hope to help civilizational knowledge survive disruptive climate change centuries in the future: the ending of the Ice Age. The bar is continuously raised as the box travels through space and time to the present day. Readers are tacitly encouraged to partner with the author and fill in the blanks by considering their metaphorical boxes, lessons for the future from their past.",
-        "pdf_file": "http://127.0.0.1:8000/media/storage/pdfs/the_oldest_word.pdf",
-        "cover_image": "http://127.0.0.1:8000/media/storage/covers/the_oldest_word.jpg",
-        "upload_date": "2025-05-09T22:32:15.315382Z",
+        "id": 7,
+        "title": "Python Crush Course 2nd Edition",
+        "author": "Eric Matthes",
+        "slug": "python-crush-course-2nd-edition-eric-matthes",
+        "category": {
+            "id": 3,
+            "name": "Education"
+        },
+        "language": {
+            "id": 1,
+            "name": "English"
+        },
+        "publisher": "Book Publications",
+        "publication_date": "30-11-2015",
+        "description": "If you've been thinking about learning how to code or picking up Python, this internationally bestselling guide to the most popular programming language is your quickest, easiest way to get started and go!",
+        "pdf_file": "https://zkrmzrvzkhmqtiacdvzo.supabase.co/storage/v1/object/public/the-reader-ebook/eBooks/Python_Crash_Course.pdf",
+        "cover_image": "https://zkrmzrvzkhmqtiacdvzo.supabase.co/storage/v1/object/public/the-reader-ebook/images/Python_Crash_Course.jpg",
+        "upload_date": "12-05-2025",
         "featured": true
     }
 ]</div>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h4>Sample Code (Android)</h4>
-                        <div class="code-block">
+                </div>
+                
+                <div class="code-example">
+                    <h4>Sample Code (Android)</h4>
+                    <div class="code-block">
 // Using Retrofit in Android
 interface ReaderApiService {
     @GET("api/books/")
@@ -65,82 +69,99 @@ interface ReaderApiService {
 data class BookModel(
     val id: Int,
     val author: String,
-    val category: String,
-    val language: String,
-    val publisher: String,
+    val category: CategoryModel,  // Foreign key relation
+    val language: LanguageModel,  // Foreign key relation
+    val publisher: String?,
     val title: String,
     val slug: String,
-    val publication_date: String,
+    val publication_date: String?,
     val description: String,
-    val pdf_file: String,
-    val cover_image: String,
+    val pdf_file: String,  // Matches field name in the model
+    val cover_image: String,  // Matches field name in the model
     val upload_date: String,
     val featured: Boolean
 )
 
+// Category and Language models to match foreign key relationships
+data class CategoryModel(
+    val id: Int,
+    val name: String
+)
+
+data class LanguageModel(
+    val id: Int,
+    val name: String
+)
+
 // Example usage
 val books = readerApiService.getAllBooks()</div>
-                    </div>
+                </div>
+            </div>
+            
+            <!-- Book Details -->
+            <div class="endpoint-item">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <h3 class="endpoint-title">Book Details</h3>
+                </div>
+                <p class="endpoint-description">Retrieves detailed metadata for a specific book by its ID.</p>
+                
+                <div class="endpoint-url">
+                    https://the-reader-ebook.vercel.app/api/books/{pk}/
+                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                 </div>
                 
-                <!-- Book Details -->
-                <div class="endpoint-item">
-                    <div class="endpoint-header">
-                        <span class="method get">GET</span>
-                        <h3 class="endpoint-title">Book Details</h3>
-                    </div>
-                    <p class="endpoint-description">Retrieves detailed metadata for a specific book by its ID.</p>
-                    
-                    <div class="endpoint-url">
-                        https://the-reader-ebook.vercel.app/api/books/{pk}/
-                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
-                    </div>
-                    
-                    <div class="parameter-section">
-                        <h4>Parameters</h4>
-                        <table class="parameter-table">
-                            <thead>
-                                <tr>
-                                    <th>Parameter</th>
-                                    <th>Type</th>
-                                    <th>Required</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>pk</td>
-                                    <td>Integer</td>
-                                    <td>Yes</td>
-                                    <td>The ID of the book to retrieve</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="response-section">
-                        <h4>Response Format</h4>
-                        <div class="code-block">
+                <div class="parameter-section">
+                    <h4>Parameters</h4>
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>pk</td>
+                                <td>Integer</td>
+                                <td>Yes</td>
+                                <td>The ID of the book to retrieve</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="response-section">
+                    <h4>Response Format</h4>
+                    <div class="code-block">
 {
-    "id": 1,
-    "author": "Johnny Firic",
-    "category": "Friction",
-    "language": "English",
-    "publisher": "Independently published",
-    "title": "The Oldest Word",
-    "slug": "the-oldest-word-johnny-firic",
-    "publication_date": "2022-10-01",
-    "description": ""Plural identity is where respectful practice begins." Who are you? Just the one body and mind? Does your story begin with your birth? Or how far back would you go?\r\n\r\nThe Oldest Word spans ten thousand years and more than a dozen settings. Human contradictions are reconciled time and again, with tragedy and humor feeding off each other. From the twin mirror mazes of history and psychology, amid ever-shifting social and natural landscapes, enduring patterns emerge.\r\n\r\nThe story opens with the discovery of a mysterious box from the distant past. Its makers are five orphaned friends who hope to help civilizational knowledge survive disruptive climate change centuries in the future: the ending of the Ice Age. The bar is continuously raised as the box travels through space and time to the present day. Readers are tacitly encouraged to partner with the author and fill in the blanks by considering their metaphorical boxes, lessons for the future from their past.",
-    "pdf_file": "http://127.0.0.1:8000/media/storage/pdfs/the_oldest_word.pdf",
-    "cover_image": "http://127.0.0.1:8000/media/storage/covers/the_oldest_word.jpg",
-    "upload_date": "2025-05-09T22:32:15.315382Z",
+    "id": 7,
+    "title": "Python Crush Course 2nd Edition",
+    "author": "Eric Matthes",
+    "slug": "python-crush-course-2nd-edition-eric-matthes",
+    "category": {
+        "id": 3,
+        "name": "Education"
+    },
+    "language": {
+        "id": 1,
+        "name": "English"
+    },
+    "publisher": "Book Publications",
+    "publication_date": "30-11-2015",
+    "description": "If you've been thinking about learning how to code or picking up Python, this internationally bestselling guide to the most popular programming language is your quickest, easiest way to get started and go!",
+    "pdf_file": "https://zkrmzrvzkhmqtiacdvzo.supabase.co/storage/v1/object/public/the-reader-ebook/eBooks/Python_Crash_Course.pdf",
+    "cover_image": "https://zkrmzrvzkhmqtiacdvzo.supabase.co/storage/v1/object/public/the-reader-ebook/images/Python_Crash_Course.jpg",
+    "upload_date": "12-05-2025",
     "featured": true
 }</div>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h4>Sample Code (Android)</h4>
-                        <div class="code-block">
+                </div>
+                
+                <div class="code-example">
+                    <h4>Sample Code (Android)</h4>
+                    <div class="code-block">
 // Using Retrofit in Android
 interface ReaderApiService {
     @GET("api/books/{pk}/")
@@ -151,116 +172,116 @@ interface ReaderApiService {
 data class BookDetailModel(
     val id: Int,
     val author: String,
-    val category: String,
-    val language: String,
-    val publisher: String,
+    val category: CategoryModel,  // Foreign key relation
+    val language: LanguageModel,  // Foreign key relation
+    val publisher: String?,
     val title: String,
     val slug: String,
-    val publication_date: String,
+    val publication_date: String?,
     val description: String,
-    val pdf_file: String,
-    val cover_image: String,
+    val pdf_file: String,  // Matches field name in the model
+    val cover_image: String,  // Matches field name in the model
     val upload_date: String,
     val featured: Boolean
 )
 
 // Example usage
-val bookDetails = readerApiService.getBookDetails(1)</div>
-                    </div>
+val bookDetails = readerApiService.getBookDetails(7)</div>
+                </div>
+            </div>
+            
+            <!-- Create Book -->
+            <div class="endpoint-item">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <h3 class="endpoint-title">Create Book</h3>
+                </div>
+                <p class="endpoint-description">Upload a new book along with metadata such as title, author, category, language, and cover image.</p>
+                
+                <div class="endpoint-url">
+                    https://the-reader-ebook.vercel.app/api/books/
+                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                 </div>
                 
-                <!-- Create Book -->
-                <div class="endpoint-item">
-                    <div class="endpoint-header">
-                        <span class="method post">POST</span>
-                        <h3 class="endpoint-title">Create Book</h3>
-                    </div>
-                    <p class="endpoint-description">Upload a new book along with metadata such as title, author, category, language, and cover image.</p>
-                    
-                    <div class="endpoint-url">
-                        https://the-reader-ebook.vercel.app/api/books/
-                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
-                    </div>
-                    
-                    <div class="parameter-section">
-                        <h4>Parameters</h4>
-                        <table class="parameter-table">
-                            <thead>
-                                <tr>
-                                    <th>Parameter</th>
-                                    <th>Type</th>
-                                    <th>Required</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>pdf_file</td>
-                                    <td>File</td>
-                                    <td>Yes</td>
-                                    <td>The PDF file to upload</td>
-                                </tr>
-                                <tr>
-                                    <td>cover_image</td>
-                                    <td>File</td>
-                                    <td>Yes</td>
-                                    <td>Cover image for the book</td>
-                                </tr>
-                                <tr>
-                                    <td>title</td>
-                                    <td>String</td>
-                                    <td>Yes</td>
-                                    <td>Title of the book</td>
-                                </tr>
-                                <tr>
-                                    <td>author</td>
-                                    <td>String</td>
-                                    <td>Yes</td>
-                                    <td>Author of the book</td>
-                                </tr>
-                                <tr>
-                                    <td>category</td>
-                                    <td>String</td>
-                                    <td>Yes</td>
-                                    <td>Category of the book</td>
-                                </tr>
-                                <tr>
-                                    <td>language</td>
-                                    <td>String</td>
-                                    <td>Yes</td>
-                                    <td>Language of the book</td>
-                                </tr>
-                                <tr>
-                                    <td>publisher</td>
-                                    <td>String</td>
-                                    <td>No</td>
-                                    <td>Publisher of the book</td>
-                                </tr>
-                                <tr>
-                                    <td>publication_date</td>
-                                    <td>String (YYYY-MM-DD)</td>
-                                    <td>No</td>
-                                    <td>Publication date of the book</td>
-                                </tr>
-                                <tr>
-                                    <td>description</td>
-                                    <td>String</td>
-                                    <td>No</td>
-                                    <td>Description of the book</td>
-                                </tr>
-                                <tr>
-                                    <td>featured</td>
-                                    <td>Boolean</td>
-                                    <td>No</td>
-                                    <td>Whether the book should be featured</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h4>Sample Code (Android)</h4>
-                        <div class="code-block">
+                <div class="parameter-section">
+                    <h4>Parameters</h4>
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>pdf_file</td>
+                                <td>File</td>
+                                <td>Yes</td>
+                                <td>The PDF file to upload</td>
+                            </tr>
+                            <tr>
+                                <td>cover_image</td>
+                                <td>File</td>
+                                <td>Yes</td>
+                                <td>Cover image for the book</td>
+                            </tr>
+                            <tr>
+                                <td>title</td>
+                                <td>String</td>
+                                <td>Yes</td>
+                                <td>Title of the book</td>
+                            </tr>
+                            <tr>
+                                <td>author</td>
+                                <td>String</td>
+                                <td>Yes</td>
+                                <td>Author of the book</td>
+                            </tr>
+                            <tr>
+                                <td>category</td>
+                                <td>String</td>
+                                <td>Yes</td>
+                                <td>Category of the book</td>
+                            </tr>
+                            <tr>
+                                <td>language</td>
+                                <td>String</td>
+                                <td>Yes</td>
+                                <td>Language of the book</td>
+                            </tr>
+                            <tr>
+                                <td>publisher</td>
+                                <td>String</td>
+                                <td>No</td>
+                                <td>Publisher of the book</td>
+                            </tr>
+                            <tr>
+                                <td>publication_date</td>
+                                <td>String (DD-MM-YYYY)</td>
+                                <td>No</td>
+                                <td>Publication date of the book</td>
+                            </tr>
+                            <tr>
+                                <td>description</td>
+                                <td>String</td>
+                                <td>Yes</td>
+                                <td>Description of the book</td>
+                            </tr>
+                            <tr>
+                                <td>featured</td>
+                                <td>Boolean</td>
+                                <td>Yes</td>
+                                <td>Whether the book should be featured</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="code-example">
+                    <h4>Sample Code (Android)</h4>
+                    <div class="code-block">
 // Using Retrofit in Android with MultipartBody
 interface ReaderApiService {
     @Multipart
@@ -288,13 +309,13 @@ val coverFile = File(coverPath)
 val coverRequestBody = coverFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
 val coverPart = MultipartBody.Part.createFormData("cover_image", coverFile.name, coverRequestBody)
 
-val titleBody = "The Oldest Word".toRequestBody("text/plain".toMediaTypeOrNull())
-val authorBody = "Johnny Firic".toRequestBody("text/plain".toMediaTypeOrNull())
-val categoryBody = "Friction".toRequestBody("text/plain".toMediaTypeOrNull())
+val titleBody = "Python Crush Course 2nd Edition".toRequestBody("text/plain".toMediaTypeOrNull())
+val authorBody = "Eric Matthes".toRequestBody("text/plain".toMediaTypeOrNull())
+val categoryBody = "Education".toRequestBody("text/plain".toMediaTypeOrNull())
 val languageBody = "English".toRequestBody("text/plain".toMediaTypeOrNull())
-val publisherBody = "Independently published".toRequestBody("text/plain".toMediaTypeOrNull())
-val dateBody = "2022-10-01".toRequestBody("text/plain".toMediaTypeOrNull())
-val descriptionBody = ""Plural identity is where respectful practice begins."...".toRequestBody("text/plain".toMediaTypeOrNull())
+val publisherBody = "Book Publications".toRequestBody("text/plain".toMediaTypeOrNull())
+val dateBody = "30-11-2015".toRequestBody("text/plain".toMediaTypeOrNull())
+val descriptionBody = "If you've been thinking about learning how to code or picking up Python...".toRequestBody("text/plain".toMediaTypeOrNull())
 val featuredBody = "true".toRequestBody("text/plain".toMediaTypeOrNull())
 
 val response = readerApiService.createBook(
@@ -309,95 +330,95 @@ val response = readerApiService.createBook(
     descriptionBody,
     featuredBody
 )</div>
-                    </div>
+                </div>
+            </div>
+            
+            <!-- Update Book -->
+            <div class="endpoint-item">
+                <div class="endpoint-header">
+                    <span class="method put">PUT</span>
+                    <h3 class="endpoint-title">Update Book</h3>
+                </div>
+                <p class="endpoint-description">Updates metadata for an existing book without requiring a new file upload.</p>
+                
+                <div class="endpoint-url">
+                    https://the-reader-ebook.vercel.app/api/books/{pk}/
+                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                 </div>
                 
-                <!-- Update Book -->
-                <div class="endpoint-item">
-                    <div class="endpoint-header">
-                        <span class="method put">PUT</span>
-                        <h3 class="endpoint-title">Update Book</h3>
-                    </div>
-                    <p class="endpoint-description">Updates metadata for an existing book without requiring a new file upload.</p>
-                    
-                    <div class="endpoint-url">
-                        https://the-reader-ebook.vercel.app/api/books/{pk}/
-                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
-                    </div>
-                    
-                    <div class="parameter-section">
-                        <h4>Parameters</h4>
-                        <table class="parameter-table">
-                            <thead>
-                                <tr>
-                                    <th>Parameter</th>
-                                    <th>Type</th>
-                                    <th>Required</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>pk</td>
-                                    <td>Integer</td>
-                                    <td>Yes</td>
-                                    <td>The ID of the book to update</td>
-                                </tr>
-                                <tr>
-                                    <td>title</td>
-                                    <td>String</td>
-                                    <td>No</td>
-                                    <td>New title for the book</td>
-                                </tr>
-                                <tr>
-                                    <td>author</td>
-                                    <td>String</td>
-                                    <td>No</td>
-                                    <td>New author for the book</td>
-                                </tr>
-                                <tr>
-                                    <td>category</td>
-                                    <td>String</td>
-                                    <td>No</td>
-                                    <td>New category for the book</td>
-                                </tr>
-                                <tr>
-                                    <td>language</td>
-                                    <td>String</td>
-                                    <td>No</td>
-                                    <td>New language for the book</td>
-                                </tr>
-                                <tr>
-                                    <td>publisher</td>
-                                    <td>String</td>
-                                    <td>No</td>
-                                    <td>New publisher for the book</td>
-                                </tr>
-                                <tr>
-                                    <td>publication_date</td>
-                                    <td>String (YYYY-MM-DD)</td>
-                                    <td>No</td>
-                                    <td>New publication date for the book</td>
-                                </tr>
-                                <tr>
-                                    <td>description</td>
-                                    <td>String</td>
-                                    <td>No</td>
-                                    <td>New description for the book</td>
-                                </tr>
-                                <tr>
-                                    <td>featured</td>
-                                    <td>Boolean</td>
-                                    <td>No</td>
-                                    <td>Whether the book should be featured</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h4>Sample Code (Android)</h4>
-                        <div class="code-block">
+                <div class="parameter-section">
+                    <h4>Parameters</h4>
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>pk</td>
+                                <td>Integer</td>
+                                <td>Auto</td>
+                                <td>The ID of the book to update</td>
+                            </tr>
+                            <tr>
+                                <td>title</td>
+                                <td>String</td>
+                                <td>Yes</td>
+                                <td>New title for the book</td>
+                            </tr>
+                            <tr>
+                                <td>author</td>
+                                <td>String</td>
+                                <td>Yes</td>
+                                <td>New author for the book</td>
+                            </tr>
+                            <tr>
+                                <td>category</td>
+                                <td>String</td>
+                                <td>Yes</td>
+                                <td>New category for the book</td>
+                            </tr>
+                            <tr>
+                                <td>language</td>
+                                <td>String</td>
+                                <td>Yes</td>
+                                <td>New language for the book</td>
+                            </tr>
+                            <tr>
+                                <td>publisher</td>
+                                <td>String</td>
+                                <td>No</td>
+                                <td>New publisher for the book</td>
+                            </tr>
+                            <tr>
+                                <td>publication_date</td>
+                                <td>String (DD-MM-YYYY)</td>
+                                <td>No</td>
+                                <td>New publication date for the book</td>
+                            </tr>
+                            <tr>
+                                <td>description</td>
+                                <td>String</td>
+                                <td>Yes</td>
+                                <td>New description for the book</td>
+                            </tr>
+                            <tr>
+                                <td>featured</td>
+                                <td>Boolean</td>
+                                <td>Yes</td>
+                                <td>Whether the book should be featured</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="code-example">
+                    <h4>Sample Code (Android)</h4>
+                    <div class="code-block">
 // Using Retrofit in Android
 interface ReaderApiService {
     @Multipart
@@ -416,12 +437,17 @@ interface ReaderApiService {
 }
 
 // Example usage
-val titleBody = "Updated Title".toRequestBody("text/plain".toMediaTypeOrNull())
-val categoryBody = "Updated Category".toRequestBody("text/plain".toMediaTypeOrNull())
-val featuredBody = "false".toRequestBody("text/plain".toMediaTypeOrNull())
+val titleBody = "Python Crush Course 2nd Edition"
+    .toRequestBody("text/plain".toMediaTypeOrNull())
+    
+val categoryBody = "Education"
+    .toRequestBody("text/plain".toMediaTypeOrNull())
+    
+val featuredBody = "true"
+    .toRequestBody("text/plain".toMediaTypeOrNull())
 
 val response = readerApiService.updateBook(
-    1, 
+    7, 
     titleBody, 
     null, 
     categoryBody,
@@ -431,47 +457,47 @@ val response = readerApiService.updateBook(
     null,
     featuredBody
 )</div>
-                    </div>
+                </div>
+            </div>
+            
+            <!-- Delete Book -->
+            <div class="endpoint-item">
+                <div class="endpoint-header">
+                    <span class="method delete">DELETE</span>
+                    <h3 class="endpoint-title">Delete Book</h3>
+                </div>
+                <p class="endpoint-description">Removes a book and all associated metadata from the system.</p>
+                
+                <div class="endpoint-url">
+                    https://the-reader-ebook.vercel.app/api/books/{pk}/
+                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                 </div>
                 
-                <!-- Delete Book -->
-                <div class="endpoint-item">
-                    <div class="endpoint-header">
-                        <span class="method delete">DELETE</span>
-                        <h3 class="endpoint-title">Delete Book</h3>
-                    </div>
-                    <p class="endpoint-description">Removes a book and all associated metadata from the system.</p>
-                    
-                    <div class="endpoint-url">
-                        https://the-reader-ebook.vercel.app/api/books/{pk}/
-                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
-                    </div>
-                    
-                    <div class="parameter-section">
-                        <h4>Parameters</h4>
-                        <table class="parameter-table">
-                            <thead>
-                                <tr>
-                                    <th>Parameter</th>
-                                    <th>Type</th>
-                                    <th>Required</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>pk</td>
-                                    <td>Integer</td>
-                                    <td>Yes</td>
-                                    <td>The ID of the book to delete</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h4>Sample Code (Android)</h4>
-                        <div class="code-block">
+                <div class="parameter-section">
+                    <h4>Parameters</h4>
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>pk</td>
+                                <td>Integer</td>
+                                <td>Yes</td>
+                                <td>The ID of the book to delete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="code-example">
+                    <h4>Sample Code (Android)</h4>
+                    <div class="code-block">
 // Using Retrofit in Android
 interface ReaderApiService {
     @DELETE("api/books/{pk}/")
@@ -479,53 +505,53 @@ interface ReaderApiService {
 }
 
 // Example usage
-val response = readerApiService.deleteBook(1)</div>
-                    </div>
+val response = readerApiService.deleteBook(7)</div>
+                </div>
+            </div>
+            
+            <!-- Download PDF -->
+            <div class="endpoint-item">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <h3 class="endpoint-title">Download PDF</h3>
+                </div>
+                <p class="endpoint-description">Download the PDF file for a specific book.</p>
+                
+                <div class="endpoint-url">
+                    https://the-reader-ebook.vercel.app/api/download/pdf/{pk}/
+                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                 </div>
                 
-                <!-- Download PDF -->
-                <div class="endpoint-item">
-                    <div class="endpoint-header">
-                        <span class="method get">GET</span>
-                        <h3 class="endpoint-title">Download PDF</h3>
-                    </div>
-                    <p class="endpoint-description">Download the PDF file for a specific book.</p>
-                    
-                    <div class="endpoint-url">
-                        https://the-reader-ebook.vercel.app/api/download/pdf/{pk}/
-                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
-                    </div>
-                    
-                    <div class="parameter-section">
-                        <h4>Parameters</h4>
-                        <table class="parameter-table">
-                            <thead>
-                                <tr>
-                                    <th>Parameter</th>
-                                    <th>Type</th>
-                                    <th>Required</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>pk</td>
-                                    <td>Integer</td>
-                                    <td>Yes</td>
-                                    <td>The ID of the book to download</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="response-section">
-                        <h4>Response Format</h4>
-                        <p>Returns the PDF file as a binary stream with appropriate headers for download.</p>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h4>Sample Code (Android)</h4>
-                        <div class="code-block">
+                <div class="parameter-section">
+                    <h4>Parameters</h4>
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>pk</td>
+                                <td>Integer</td>
+                                <td>Yes</td>
+                                <td>The ID of the book to download</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="response-section">
+                    <h4>Response Format</h4>
+                    <p>Returns the PDF file as a binary stream with appropriate headers for download.</p>
+                </div>
+                
+                <div class="code-example">
+                    <h4>Sample Code (Android)</h4>
+                    <div class="code-block">
 // Using Retrofit in Android
 interface ReaderApiService {
     @Streaming
@@ -541,7 +567,7 @@ suspend fun downloadBookPdf(bookId: Int) {
     withContext(Dispatchers.IO) {
         val file = File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-            "book_${bookId}.pdf"
+            "Python_Crash_Course.pdf"
         )
         
         responseBody.byteStream().use { input ->
@@ -551,52 +577,52 @@ suspend fun downloadBookPdf(bookId: Int) {
         }
     }
 }</div>
-                    </div>
+                </div>
+            </div>
+            
+            <!-- Download Cover -->
+            <div class="endpoint-item">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <h3 class="endpoint-title">Download Cover</h3>
+                </div>
+                <p class="endpoint-description">Download the cover image for a specific book.</p>
+                
+                <div class="endpoint-url">
+                    https://the-reader-ebook.vercel.app/api/download/cover/{pk}/
+                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
                 </div>
                 
-                <!-- Download Cover -->
-                <div class="endpoint-item">
-                    <div class="endpoint-header">
-                        <span class="method get">GET</span>
-                        <h3 class="endpoint-title">Download Cover</h3>
-                    </div>
-                    <p class="endpoint-description">Download the cover image for a specific book.</p>
-                    
-                    <div class="endpoint-url">
-                        https://the-reader-ebook.vercel.app/api/download/cover/{pk}/
-                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
-                    </div>
-                    
-                    <div class="parameter-section">
-                        <h4>Parameters</h4>
-                        <table class="parameter-table">
-                            <thead>
-                                <tr>
-                                    <th>Parameter</th>
-                                    <th>Type</th>
-                                    <th>Required</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>pk</td>
-                                    <td>Integer</td>
-                                    <td>Yes</td>
-                                    <td>The ID of the book cover to download</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="response-section">
-                        <h4>Response Format</h4>
-                        <p>Returns the cover image as a binary stream with appropriate headers for download.</p>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h4>Sample Code (Android)</h4>
-                        <div class="code-block">
+                <div class="parameter-section">
+                    <h4>Parameters</h4>
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>pk</td>
+                                <td>Integer</td>
+                                <td>Yes</td>
+                                <td>The ID of the book cover to download</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="response-section">
+                    <h4>Response Format</h4>
+                    <p>Returns the cover image as a binary stream with appropriate headers for download.</p>
+                </div>
+                
+                <div class="code-example">
+                    <h4>Sample Code (Android)</h4>
+                    <div class="code-block">
 // Using Retrofit in Android
 interface ReaderApiService {
     @Streaming
@@ -607,7 +633,7 @@ interface ReaderApiService {
 // Example usage with Glide library
 fun loadBookCover(bookId: Int, imageView: ImageView) {
     Glide.with(context)
-        .load("https://the-reader-ebook.vercel.app/api/download/cover/${bookId}/")
+        .load("https://the-reader-ebook.vercel.app/api/download/cover/7/")
         .placeholder(R.drawable.placeholder_cover)
         .error(R.drawable.error_cover)
         .into(imageView)
@@ -621,7 +647,7 @@ suspend fun downloadBookCover(bookId: Int) {
     withContext(Dispatchers.IO) {
         val file = File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-            "book_cover_${bookId}.jpg"
+            "Python_Crash_Course.jpg"
         )
         
         responseBody.byteStream().use { input ->
@@ -631,8 +657,11 @@ suspend fun downloadBookCover(bookId: Int) {
         }
     }
 }</div>
-                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
+

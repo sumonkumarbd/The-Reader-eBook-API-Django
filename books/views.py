@@ -13,11 +13,7 @@ def health_check(request):
     return JsonResponse({"message": "API is working!"})
 
 def index(request):
-    books = Book.objects.all()
-    print(books[0].pdf_file)
-    print(books[0].cover_image)
-    # print(os.path.join(settings.MEDIA_URL, books[0].pdf_file.url))
-    return render(request, 'index.html', {'books': books})
+    return render(request, 'index.html')
 
 @api_view(['GET', 'POST'])
 def getBooks(request):
@@ -59,3 +55,9 @@ def bookDetail(request, pk):
     elif request.method == 'DELETE':
         book.delete()
         return Response({'message': 'Book deleted'}, status=status.HTTP_204_NO_CONTENT)
+    
+
+
+def see_eBooks(request):
+    books = Book.objects.all()
+    return render(request, 'componants/see_eBooks.html', {'books': books})

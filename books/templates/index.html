@@ -2,23 +2,27 @@
 {% load static %}
 
 {% block title %}The Reader Backend System{% endblock title %}
-{% block siteIcon %}{% static 'admin-interface/favicon/logo.png' %}{% endblock siteIcon %}
+{% block siteIcon %}{% static 'assets/favicon/logo.png' %}{% endblock siteIcon %}
 
 {% block content %}
     {% comment %} Navebar {% endcomment %}
     {% include "componants/navbar.html" %}
+
     {% comment %} Hero Section {% endcomment %}
     {% include "componants/hero.html" %}
+
     {% comment %} Features Section {% endcomment %}
     {% include "componants/features.html" %}
+
     {% comment %} API Reference Section {% endcomment %}
     {% include "componants/api _endpoints.html" %}
-    {% comment %} Developer Section {% endcomment %}
-    {% include "componants/developer.html" %}
-    {% comment %} Book List {% endcomment %}
-    {% include "componants/book_list.html" %}
+
     {% comment %} Stats Section {% endcomment %}
     {% comment %} {% include "componants/statistics.html" %} {% endcomment %}
+
+    {% comment %} Developer Section {% endcomment %}
+    {% include "componants/developer.html" %}
+
     {% comment %} Footer Section {% endcomment %}
     {% include "componants/footer.html" %}
 

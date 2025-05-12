@@ -1,0 +1,44 @@
+{% extends "base_layout.html" %}
+{% load static %}
+
+{% block title %}Collections{% endblock title %}
+{% block siteIcon %}{% static 'assets/favicon/logo.png' %}{% endblock siteIcon %}
+
+{% block content %}
+  {% comment %} Navebar {% endcomment %}
+   <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container nav-container">
+
+        <div class="nav-links">
+          <a href="/"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</a>
+        </div>
+
+        <a href="#" class="logo">
+          <i class="fas fa-book-reader"></i>
+          The Reader API
+        </a>
+        <!-- <button class="get-started">Get Started</button> -->
+      </div>
+    </nav>
+      {% comment %} booklist {% endcomment %}
+    <section class="features" id="books">
+        <div class="section-title">
+          <h2>eBook Collections</h2>
+          <p>Explore the Collection of eBooks</p>
+        </div>
+        <div class="card-container">
+          {% for book in books %}
+        <div class="card">
+          <img src="{{book.cover_image}}" alt="Card Image" >
+          <div class="card-content">
+            <h3 class=".card-title">{{book.title}}</h3>
+            {% comment %} <p class="card-description">{{book.description}}</p> {% endcomment %}
+          </div>
+          <div class="card-footer">
+          <a class="btn btn-primary" href="{{book.pdf_file}}" target="_blank">Read Now</a>
+          </div>
+        </div>{% comment %} card class {% endcomment %}
+    {% endfor %}
+  </section>
+{% endblock  %}

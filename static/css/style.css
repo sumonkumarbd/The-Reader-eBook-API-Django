@@ -274,166 +274,151 @@ body {
 }
 
 /* API Endpoints Section */
-.endpoints {
-  padding: 100px 0;
-  background-color: var(--gray-light);
+.code-block {
+    background-color: #f5f7f9;
+    border-radius: 6px;
+    padding: 16px;
+    margin: 16px 0;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre;
+    color: #333;
+    border-left: 4px solid #2563eb;
 }
 
-.endpoint-tabs {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 40px;
-}
-
-.endpoint-tab {
-  padding: 10px 20px;
-  background-color: white;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.endpoint-tab.active {
-  background-color: var(--primary);
-  color: white;
-  border-color: var(--primary);
-}
-
-.endpoint-tab:hover:not(.active) {
-  background-color: #f5f5f5;
-}
-
-.endpoint-content {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-}
-
-.endpoint-item {
-  display: none;
-  padding: 30px;
-}
-
-.endpoint-item.active {
-  display: block;
-  animation: fadeIn 0.5s ease;
-}
-
-.endpoint-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.method {
-  padding: 5px 15px;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.get {
-  background-color: rgba(97, 218, 251, 0.2);
-  color: #09c;
-}
-
-.post {
-  background-color: rgba(73, 204, 144, 0.2);
-  color: #3c9;
-}
-
-.put {
-  background-color: rgba(252, 192, 68, 0.2);
-  color: #f90;
-}
-
-.delete {
-  background-color: rgba(247, 82, 95, 0.2);
-  color: #f55;
-}
-
-.endpoint-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.endpoint-description {
-  margin-bottom: 20px;
-  color: var(--gray);
-}
-
-.endpoint-url {
-  background-color: var(--dark);
-  color: white;
-  padding: 15px;
-  border-radius: 5px;
-  font-family: "Courier New", monospace;
-  margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.copy-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 0.8rem;
-}
-
-.copy-btn:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
-.parameter-section h4,
-.response-section h4 {
-  margin-bottom: 15px;
-  font-size: 1.2rem;
+.response-section .code-block {
+    border-left: 4px solid #10b981;
 }
 
 .parameter-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
 }
 
 .parameter-table th,
 .parameter-table td {
-  text-align: left;
-  padding: 12px;
-  border-bottom: 1px solid var(--gray-light);
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .parameter-table th {
-  background-color: var(--gray-light);
-  font-weight: 600;
+    background-color: #f3f4f6;
+    font-weight: 600;
 }
 
-.parameter-table tr:last-child td {
-  border-bottom: none;
+.endpoint-url {
+    background-color: #f3f4f6;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: monospace;
+    margin: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.copy-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.copy-btn:hover {
+    background-color: #1d4ed8;
+}
+
+.endpoint-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    justify-content: center;
+}
+
+.endpoint-tab.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.endpoint-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.method {
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.get {
+    background-color: #10b981;
+    color: white;
+}
+
+.post {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.put {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.delete {
+    background-color: #ef4444;
+    color: white;
+}
+
+.endpoint-item {
+    display: none;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
+    background-color: white;
+}
+
+.endpoint-item.active {
+    display: block;
+}
+
+.endpoint-title {
+    margin: 0;
+    font-size: 20px;
+}
+
+.endpoint-description {
+    margin-top: 8px;
+    color: #4b5563;
+    font-size: 16px;
+}
+
+h4 {
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+/* Make the code more readable */
 .code-block {
-  background-color: #2d2d2d;
-  color: #f8f8f2;
-  padding: 15px;
-  border-radius: 5px;
-  font-family: "Courier New", monospace;
-  overflow-x: auto;
-  margin-bottom: 20px;
+    line-height: 1.8;
 }
+/* API Endpoints Section end*/
+
 
 /* Statistics Section */
 .stats {
@@ -579,6 +564,105 @@ body {
   max-width: 700px;
   margin: 0 auto 30px;
   opacity: 0.9;
+}
+
+
+
+ /* Container for cards */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 20px;
+  margin: 20px;
+}
+
+/* Individual card styles */
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-10px); /* Slight lift effect */
+}
+
+/* Card image */
+.card img {
+  width: 100%;
+  height: 300px; /* Fixed height for image */
+  object-fit: fill;
+}
+
+/* Card content (title + description) */
+.card-content {
+  padding: 2px 10px;
+}
+
+/* Card title */
+.card-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+div.card-content > h3 {
+  white-space: nowrap; /* Prevents the text from wrapping */
+  overflow: hidden;    /* Hides any overflowed text */
+  text-overflow: ellipsis; /* Adds '...' to indicate overflowed text */
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Card description (truncated to 3 lines) */
+.card-description {
+  font-size: 1rem;
+  color: #555;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Link style to remove the default underline and make it look like a button */
+.card-btn {
+  text-decoration: none; /* Remove underline from the link */
+}
+/* Card footer styling */
+.card-footer {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically (if needed) */
+  padding: 10px; /* Padding inside the footer */
+  text-align: center; /* Center the text inside the footer */
+  background-color: #f9f9f9; /* Light background for the footer */
+  border-top: 1px solid #ddd; /* Optional: add a separator line */
+}
+
+/* Optional: Adjust the paragraphs' styles */
+.card-footer .card-author, .card-footer .card-publisher {
+  margin: 5px 0; /* Space between the paragraphs */
+  font-size: 1rem; /* Set the font size */
+  color: #555; /* Set text color */
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 1024px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: 1fr; /* 1 card per row */
+  }
 }
 
 /* Footer */
