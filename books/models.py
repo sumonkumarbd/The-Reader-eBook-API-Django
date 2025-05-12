@@ -39,8 +39,8 @@ class Book(models.Model):
     publisher = models.CharField(max_length=100, validators=[validate_length], blank=True, null=True)  # Now Publisher is defined
     publication_date = models.DateField(blank=True, null=True)
     description = models.TextField()
-    pdf_file = models.FileField(max_length=500, storage=get_supabase_storage,upload_to='eBooks/',validators=[validate_pdf])
-    cover_image = models.ImageField(max_length=500, storage=get_supabase_storage,upload_to='images/',validators=[imagevalidator])
+    pdf_file = models.FileField(max_length=500, storage=get_supabase_storage(),upload_to='eBooks/',validators=[validate_pdf])
+    cover_image = models.ImageField(max_length=500, storage=get_supabase_storage(),upload_to='images/',validators=[imagevalidator])
     upload_date = models.DateTimeField(auto_now_add=True)
     featured = models.BooleanField(default=False)
 

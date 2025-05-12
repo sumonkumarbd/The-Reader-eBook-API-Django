@@ -30,6 +30,7 @@ class BookAdmin(admin.ModelAdmin):
     set_book_to_unfeatured.short_description = 'Mark selected books as unfeatured'
 
 
+
 # Register your models here.
 admin.site.register(Category)
 admin.site.register(Language)

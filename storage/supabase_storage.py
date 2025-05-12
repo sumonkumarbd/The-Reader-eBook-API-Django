@@ -6,10 +6,10 @@ import mimetypes
 
 class SupabaseStorage(Storage):
     def __init__(self):
-        self.url = os.environ.get('SUPABASE_URL')  # Ensure your SUPABASE_URL and API_KEY are set in the environment
+        self.base_url = os.environ.get('SUPABASE_URL')  # Ensure your SUPABASE_URL and API_KEY are set in the environment
         self.api_key = os.environ.get('SUPABASE_API_KEY')
         self.bucket = 'the-reader-ebook'
-        self.client: Client = create_client(self.url, self.api_key)
+        self.client: Client = create_client(self.base_url, self.api_key)
 
     def _open(self, name, mode='rb'):
         pass
@@ -25,10 +25,10 @@ class SupabaseStorage(Storage):
             content_type, _ = mimetypes.guess_type(name)
             bucket = self.client.storage.from_(self.bucket)
             bucket.upload(name, file_data, {"content-type": content_type})
-            return f'{self.url}/storage/v1/object/public/{self.bucket}/{name}'
+            return f'{self.base_url}/storage/v1/object/public/{self.bucket}/{name}'
 
     def get_url(self, name):
-        return f'{self.url}/storage/v1/object/public/{self.bucket}/{name}'
+        return f'{self.base_url}/storage/v1/object/public/{self.bucket}/{name}'
 
     def exists(self, name):
         # Check if the file exists in the Supabase storage bucket
@@ -38,3 +38,7 @@ class SupabaseStorage(Storage):
             return file.status_code == 200  # If the file exists, status_code should be 200
         except:
             return False
+
+
+    def url(self, name):
+        return f'{self.base_url}/storage/v1/object/public/{self.bucket}/{name}'
