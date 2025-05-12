@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Book, Category, Language
 from storage.supabase_storage import SupabaseStorage
 from django.db import transaction
+import mimetypes
 
 class BookSerializer(serializers.ModelSerializer):
     author = serializers.CharField()
@@ -72,14 +73,18 @@ class BookSerializer(serializers.ModelSerializer):
             # Handle PDF file
             if pdf_file:
                 pdf_filename = f"eBooks/{book.id}_{pdf_file.name}"
+                mime_type, _ = mimetypes.guess_type(pdf_filename.name)
+                content_type = mime_type or "application/octet-stream"
                 # Upload file to Supabase and get the path
-                pdf_path = storage.save(pdf_filename, pdf_file)
+                pdf_path = storage.save(pdf_filename, pdf_file, content_type)
                 # Set the file path in the model
                 book.pdf_file = pdf_path
             
             # Handle cover image
             if cover_image:
                 image_filename = f"images/{book.id}_{cover_image.name}"
+                mime_type, _ = mimetypes.guess_type(image_filename.name)
+                content_type = mime_type or "image/jpeg"
                 # Upload file to Supabase and get the path
                 image_path = storage.save(image_filename, cover_image)
                 # Set the file path in the model
@@ -127,14 +132,18 @@ class BookSerializer(serializers.ModelSerializer):
             # Handle PDF file
             if pdf_file:
                 pdf_filename = f"eBooks/{instance.id}_{pdf_file.name}"
+                mime_type, _ = mimetypes.guess_type(pdf_filename.name)
+                content_type = mime_type or "application/octet-stream"
                 # Upload file to Supabase and get the path
-                pdf_path = storage.save(pdf_filename, pdf_file)
+                pdf_path = storage.save(pdf_filename, pdf_file, content_type)
                 # Set the file path in the model
                 instance.pdf_file = pdf_path
             
             # Handle cover image
             if cover_image:
                 image_filename = f"images/{instance.id}_{cover_image.name}"
+                mime_type, _ = mimetypes.guess_type(image_filename.name)
+                content_type = mime_type or "image/jpeg"
                 # Upload file to Supabase and get the path
                 image_path = storage.save(image_filename, cover_image)
                 # Set the file path in the model

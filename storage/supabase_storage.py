@@ -2,6 +2,7 @@ from supabase import create_client, Client
 import os
 from django.core.files.storage import Storage
 import uuid
+import mimetypes
 
 class SupabaseStorage(Storage):
     def __init__(self):
@@ -13,15 +14,18 @@ class SupabaseStorage(Storage):
     def _open(self, name, mode='rb'):
         pass
 
-    def _save(self, name, content):
+    def _save(self, name, content, content_type=None):
         # Check if file already exists before uploading
         if self.exists(name):
             raise Exception(f"File with name {name} already exists.")
 
         file_data = content.read()
-        bucket = self.client.storage.from_(self.bucket)
-        bucket.upload(name, file_data)
-        return f'{self.url}/storage/v1/object/public/{self.bucket}/{name}'
+        # Default content_type fallback
+        if not content_type:
+            content_type, _ = mimetypes.guess_type(name)
+            bucket = self.client.storage.from_(self.bucket)
+            bucket.upload(name, file_data, {"content-type": content_type})
+            return f'{self.url}/storage/v1/object/public/{self.bucket}/{name}'
 
     def get_url(self, name):
         return f'{self.url}/storage/v1/object/public/{self.bucket}/{name}'
