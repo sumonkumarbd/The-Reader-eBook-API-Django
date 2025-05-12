@@ -1,31 +1,31 @@
-<section class="features" id="features>
-    <div class="container"
+<section class="features" id="features">
+  <div class="container">
     <div class="book-container">
-  {% for book in books %}
-  <div class="book-card">
-    <img
-      src="{{ book.cover_image.url }}"
-      alt="{{ book.title }}"
-      class="book-image"
-    />
-    <div class="book-content">
-      <h5 class="book-title">{{ book.title }}</h5>
-      <p class="book-description" title="{{ book.description }}">
-        {{ book.description }}
-      </p>
-    </div>
-    <div class="book-footer">
-      <small class="book-upload-date">{{ book.upload_date }}</small>
-      <a
-        href="{{ book.pdf_file.url }}"
-        class="download-btn"
-        target="_blank"
-      >
-        Download
-      </a>
+      {% for book in books %}
+        <div class="book-card">
+          <img
+            src="{{ book.cover_image }}"
+            alt="{{ book.title }}"
+            class="book-image"
+          />
+          <div class="book-content">
+            <h5 class="book-title">{{ book.title }}</h5>
+            <p class="book-description" title="{{ book.description }}">
+              {{ book.description }}
+            </p>
+          </div>
+          <div class="book-footer">
+            <small class="book-upload-date">{{ book.upload_date }}</small>
+            <a
+              href="{{ book.pdf_file }}"
+              class="download-btn"
+              target="_blank"
+            >
+              Download
+            </a>
+          </div>
+        </div>
+      {% endfor %}
     </div>
   </div>
-  {% endfor %}
-</div>
-</div>
 </section>

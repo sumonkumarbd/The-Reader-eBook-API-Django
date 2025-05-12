@@ -14,6 +14,9 @@ def health_check(request):
 
 def index(request):
     books = Book.objects.all()
+    print(books[0].pdf_file)
+    print(books[0].cover_image)
+    # print(os.path.join(settings.MEDIA_URL, books[0].pdf_file.url))
     return render(request, 'index.html', {'books': books})
 
 @api_view(['GET', 'POST'])
@@ -56,22 +59,3 @@ def bookDetail(request, pk):
     elif request.method == 'DELETE':
         book.delete()
         return Response({'message': 'Book deleted'}, status=status.HTTP_204_NO_CONTENT)
-
-def download_pdf(request, pk):
-    try:
-        book = Book.objects.get(pk=pk)
-        # For Vercel deployment, redirect to the file URL instead of serving directly
-        if book.pdf_file:
-            return HttpResponseRedirect(book.pdf_file.url)
-        return HttpResponse("PDF not found", status=404)
-    except Book.DoesNotExist:
-        return HttpResponse("Book not found", status=404)
-
-def download_cover(request, pk):
-    try:
-        book = Book.objects.get(pk=pk)
-        if book.cover_image:
-            return HttpResponseRedirect(book.cover_image.url)
-        return HttpResponse("Cover image not available", status=404)
-    except Book.DoesNotExist:
-        return HttpResponse("Book not found", status=404)

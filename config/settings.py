@@ -56,6 +56,8 @@ ALLOWED_HOSTS = ['*']
 # admin interface
 ADMIN_INTERFACE = True
 
+APPEND_SLASH = True
+
 
 # Application definition
 INSTALLED_APPS = [
