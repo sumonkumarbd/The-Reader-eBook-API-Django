@@ -29,15 +29,15 @@
         </div>
         <div class="card-container">
           {% for book in books %}
-        <div class="card">
+        <div class="card" onclick="window.location.href='{{book.pdf_file}}'">
           <img src="{{book.cover_image}}" alt="Card Image" >
-          <div class="card-content">
+          {% comment %} <div class="card-content">
             <h3 class=".card-title">{{book.title}}</h3>
-            {% comment %} <p class="card-description">{{book.description}}</p> {% endcomment %}
+            <p class="card-description">{{book.description}}</p>
           </div>
           <div class="card-footer">
           <a class="btn btn-primary" href="{{book.pdf_file}}" target="_blank">Read Now</a>
-          </div>
+          </div> {% endcomment %}
         </div>{% comment %} card class {% endcomment %}
     {% endfor %}
   </section>

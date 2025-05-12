@@ -7,6 +7,7 @@ import mimetypes
 class SupabaseStorage(Storage):
     def __init__(self):
         self.base_url = os.environ.get('SUPABASE_URL')  # Ensure your SUPABASE_URL and API_KEY are set in the environment
+        self.media_path = os.environ.get('SUPABASE_MEDIA_PATH')
         self.api_key = os.environ.get('SUPABASE_API_KEY')
         self.bucket = 'the-reader-ebook'
         self.client: Client = create_client(self.base_url, self.api_key)
@@ -42,3 +43,9 @@ class SupabaseStorage(Storage):
 
     def url(self, name):
         return f'{self.base_url}/storage/v1/object/public/{self.bucket}/{name}'
+
+
+
+# Factory function
+def get_supabase_storage():
+    return SupabaseStorage()

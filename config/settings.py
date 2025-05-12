@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'storages',
+    'django_cleanup.apps.CleanupConfig',
     'books',
     
 ]
@@ -134,9 +135,15 @@ DATABASES = {
 # Custom storage backend for Supabase
 DEFAULT_FILE_STORAGE = 'storage.supabase_storage.SupabaseStorage'
 SUPABASE_URL = config("SUPABASE_URL")
+SUPABASE_MEDIA_PATH = config("SUPABASE_MEDIA_PATH")
 SUPABASE_API_KEY = config("SUPABASE_API_KEY")
 SUPABASE_BUCKET = config("SUPERBASE_BUCKET_NAME")
 SUPABASE_REGION = config("SUPABASE_REGION", default="us-east-1")
+
+
+MEDIA_URL = f"{SUPABASE_URL}/{SUPABASE_MEDIA_PATH}"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')   
+
 
 
 # Password validation
@@ -195,3 +202,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
