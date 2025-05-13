@@ -1,4 +1,14 @@
 {% load static %}
+{% comment %} {% load i18n %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% load bootstrap5 %} {% endcomment %}
+
+{% comment %} 
+    This is the base layout for the Django application. 
+    It includes the necessary HTML structure and links to CSS and JS files.
+    The blocks are defined for title and content to be overridden in child templates.
+{% endcomment %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -12,7 +22,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Add icon link -->
-        <link rel="icon" href="{% block siteIcon %}{% endblock siteIcon %}" type="image/x-icon"> 
+        <link rel="icon" href="{% static 'assets/logo.png' %}" type="image/x-icon"> 
         <!-- Link to CSS -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         {% comment %} Font Awasome Cdns {% endcomment %}

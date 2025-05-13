@@ -1,10 +1,12 @@
 <!-- Navigation -->
+{% load static %}
 <nav class="navbar">
   <div class="container nav-container">
     <a href="#" class="logo">
-      <i class="fas fa-book-reader"></i>
+    <i class="fas fa-book-reader"></i>
       The Reader API
-    </a>
+      {% comment %} <img src="{% static 'assets/logo_png.png' %}"/> {% endcomment %}
+    </a> 
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#endpoints">API Reference</a>
