@@ -21,6 +21,14 @@ export PATH="/python312/bin:$PATH"
 echo "Collecting static files..."
 python3 manage.py collectstatic --noinput
 
+# Migrate static files
+echo "Make Migrations..."
+python3 manage.py makemigrations
+
+# Migrate static files
+echo "Migrate All..."
+python3 manage.py migrate
+
 # Create the directory referenced in vercel.json
 echo "Creating staticfiles_build directory..."
 mkdir -p staticfiles_build
