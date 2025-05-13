@@ -1,5 +1,6 @@
 #!/bin/bash
 # Exit on error
+echo "Starting build process..."
 set -o errexit
 
 # Use the Python executable that Vercel provides
@@ -33,5 +34,5 @@ python3 manage.py migrate
 echo "Creating staticfiles_build directory..."
 mkdir -p staticfiles_build
 cp -r staticfiles/* staticfiles_build/ || echo "No static files to copy"
-
+echo "Finish build process..."
 echo "Build completed successfully!"
