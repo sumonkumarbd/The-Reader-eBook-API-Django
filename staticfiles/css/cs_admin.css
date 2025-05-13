@@ -1,0 +1,9 @@
+
+
+body > div > div.login-logo > h1 > picture > img {
+    width: 400px;
+    height: 50px;
+    object-fit: cover;
+    display: block; /* resets flex behavior */
+    margin: 0 auto; /* centers the image horizontally */
+}
