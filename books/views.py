@@ -61,3 +61,7 @@ def bookDetail(request, pk):
 def see_eBooks(request):
     books = Book.objects.all()
     return render(request, 'componants/see_eBooks.html', {'books': books})
+
+
+def privacy_policy(request):
+    return render(request, 'componants/privacy_policy.html')

@@ -9,5 +9,6 @@ urlpatterns = [
     path('api/books/', views.getBooks, name='book-list-create'),
     path('api/books/<int:pk>/', views.bookDetail, name='book-detail'),
     path('ebooks/', views.see_eBooks, name='see_eBooks'),
+    path('privacy/', views.privacy_policy, name='privacy_policy'),
 
 ]

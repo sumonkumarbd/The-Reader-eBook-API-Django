@@ -662,6 +662,40 @@ div.card-content > h3 {
   color: #555; /* Set text color */
 }
 
+/* privacy policy */
+.privacy-policy {
+  padding: 80px 0;
+  background-color: var(--gray-light);
+  border-top: 1px solid #ddd;
+}
+
+.policy-content {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--dark);
+}
+
+.policy-content h3 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: var(--primary);
+  font-size: 1.3rem;
+}
+
+.policy-content p {
+  margin-bottom: 20px;
+  color: var(--gray);
+}
+.email_link{
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* privacy policy */
+
 /* Responsive Design for smaller screens */
 @media (max-width: 1024px) {
   .card-container {
@@ -676,18 +710,34 @@ div.card-content > h3 {
 }
 
 /* Footer */
-footer {
-  background-color: var(--dark);
-  color: white;
-  padding: 60px 0 20px;
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: var(--dark); /* or your desired background */
+  flex-wrap: wrap;
+}
+.footer-container a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.footer-container a:hover {
+  color: #ffffff;
 }
 
-.copyright {
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
+.footer-left {
+  font-size: 14px;
+  color: #ffffff;
 }
+
+.footer-right {
+  font-size: 14px;
+  color: #ffffff;
+}
+
 
 /* Animation Keyframes */
 @keyframes fadeIn {
