@@ -246,6 +246,22 @@ Feedback and contributions are welcome!
 
 ---
 
+> **Security Notice:**  
+> Never commit `.env` files with real secrets. Use `.env.example` to share required environment variables.
+
+---
+
+> **Best Practice:**  
+> Never commit your local `.venv` (virtual environment) folder. All dependencies are tracked in `requirements.txt`. Re-create your environment using:
+> 
+> ```
+> python -m venv venv
+> source venv/bin/activate  # or venv\Scripts\activate on Windows
+> pip install -r requirements.txt
+> ```
+
+---
+
 ## 💼 Commercial Use, Customization, and Licensing
 
 This project is released under the permissive [MIT License](https://github.com/sumonkumarbd/The-Reader-eBook-API-Django/blob/master/MIT%20License), allowing anyone to use, modify, and even integrate this code into commercial products.
