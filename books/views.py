@@ -7,6 +7,9 @@ from django.http import JsonResponse
 from rest_framework import status
 from .serializers import *
 import os
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 def health_check(request):
@@ -53,7 +56,9 @@ def bookDetail(request, pk):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     elif request.method == 'DELETE':
-        book.delete()
+        logger.info(f"DELETE request received for book ID {pk}")
+        serializer = BookSerializer(book, context={'request': request})
+        serializer.delete()
         return Response({'message': 'Book deleted'}, status=status.HTTP_204_NO_CONTENT)
     
 

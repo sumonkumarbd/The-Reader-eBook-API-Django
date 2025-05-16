@@ -3,6 +3,10 @@ from .models import Book, Category, Language
 from storage.supabase_storage import SupabaseStorage
 from django.db import transaction
 import mimetypes
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 class BookSerializer(serializers.ModelSerializer):
     author = serializers.CharField()
