@@ -248,7 +248,7 @@ Feedback and contributions are welcome!
 
 ## 💼 Commercial Use, Customization, and Licensing
 
-This project is released under the permissive [MIT License](LICENSE), allowing anyone to use, modify, and even integrate this code into commercial products.
+This project is released under the permissive [MIT License](https://github.com/sumonkumarbd/The-Reader-eBook-API-Django/blob/master/MIT%20License), allowing anyone to use, modify, and even integrate this code into commercial products.
 
 If you are interested in:
 - Purchasing exclusive rights,
