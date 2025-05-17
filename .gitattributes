@@ -6,9 +6,4 @@ build/* linguist-generated=true
 dist/* linguist-generated=true
 *.min.js linguist-generated=true
 *.min.css linguist-generated=true
-*.js linguist-generated=true
 *.css linguist-generated=true
-
-# Optionally, mark documentation as not code
-docs/* linguist-documentation=true
-*.md linguist-documentation=true
