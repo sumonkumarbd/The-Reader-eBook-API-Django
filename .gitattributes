@@ -1,4 +1,3 @@
 *.html linguist-generated=true
-docs/* linguist-documentation=true
-build/* linguist-generated=true
-dist/* linguist-generated=true
+static/ linguist-generated=true
+templates/ linguist-generated=true
