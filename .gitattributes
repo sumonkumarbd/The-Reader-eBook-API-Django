@@ -1,3 +1,9 @@
-*.html linguist-generated=true
-static/ linguist-generated=true
-templates/ linguist-generated=true
+# Ignore minified JS/CSS and static assets in language stats
+static/* linguist-generated=true
+build/* linguist-generated=true
+dist/* linguist-generated=true
+*.min.js linguist-generated=true
+*.min.css linguist-generated=true
+
+# Optionally, ignore docs
+docs/* linguist-documentation=true
