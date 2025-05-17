@@ -4,6 +4,5 @@ staticfiles/* linguist-generated=true
 media/* linguist-generated=true
 build/* linguist-generated=true
 dist/* linguist-generated=true
-*.min.js linguist-generated=true
-*.min.css linguist-generated=true
+*.js linguist-generated=true
 *.css linguist-generated=true
